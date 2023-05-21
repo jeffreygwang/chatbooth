@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+service MessageService {
+  rpc Authenticate(AuthenticateRequest) returns (StringResponse) {}
+  rpc List(ListRequest) returns (StringResponse) {}
+  rpc Send(SendRequest) returns (EmptyResponse) {}
+  rpc Deliver(DeliverRequest) returns (StringResponse) {}
+  rpc Delete(DeleteRequest) returns (EmptyResponse) {}
+}
+
+message AuthenticateRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message ListRequest {
+  string token = 1;
+  string request = 2;
+}
+
+message SendRequest {
+  string token = 1;
+  string username = 2;
+  string body = 3;
+}
+
+message DeliverRequest {
+  string token = 1;
+}
+
+message DeleteRequest {
+  string token = 1;
+  string username = 2;
+}
+
+message StringResponse {
+  bool success = 1;
+  string response = 2;
+}
+
+message EmptyResponse {
+  bool success = 1;
+}
